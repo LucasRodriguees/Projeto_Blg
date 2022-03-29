@@ -1,0 +1,12 @@
+.text-decorator-none{
+    text-decoration: none;
+}
+
+.marginLeft{
+    background-color: #0548ac !important;
+}
+
+.btndeletar{
+    margin-right: 20px !important;
+    background-color: #feba02 !important;
+}

@@ -58,7 +58,7 @@ function Login() {
                         <TextField value={userLogin.senha} onChange={(e:ChangeEvent<HTMLInputElement>) =>updatedModel(e)} id="senha" label="senha" variant="outlined" name="senha" margin="normal" type="password" fullWidth />
                         <Box marginTop={2} textAlign="center">
                       
-                              <Button type="submit" variant="contained" color="primary">
+                              <Button type="submit" variant="contained" color="primary" className="bootao">
                                 Logar
                               </Button>
                             
