@@ -16,5 +16,9 @@
 .textos{
     color: white;
     text-decoration: none;
+    width: 10;
+    justify-content: center;
+    display: flex;
+   
     
 }
