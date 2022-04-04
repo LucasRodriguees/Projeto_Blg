@@ -1,13 +1,29 @@
-import React from 'react';
-import {Typography, Box, Grid, Button} from '@material-ui/core';
-import'./Home.css';
+import React, { useEffect } from 'react';
+import { Typography, Box, Grid, Button } from '@material-ui/core';
+import './Home.css';
 import TabPostagem from '../../components/postagens/tabpostagem/TabPostagem';
 import ModalPostagem from '../../components/postagens/modalPostagem/ModalPostagem';
+import { Link, useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../store/tokens/tokensReducer';
 
-function Home(){
+function Home() {
+
+    let history = useHistory();
+    const token = useSelector<TokenState, TokenState["tokens"]>( // constante que vai acessar nosso store e pegar o token e atribuir a essa constante
+        (state) => state.tokens
+    );
+
+    useEffect(() => {
+        if (token == "") {  // essa constante que vai ser verificada 
+            alert("Você precisa estar logado")
+            history.push("/login")
+
+        }
+    }, [token])
     return (
         <>
-          <Grid container direction="row" justifyContent="center" alignItems="center" className="caixa">
+            <Grid container direction="row" justifyContent="center" alignItems="center" className="caixa">
                 <Grid alignItems="center" item xs={6}>
                     <Box paddingX={20} >
                         <Typography variant="h3" gutterBottom color="textPrimary" component="h3" align="center" className="titulo">Seja bem vindo(a)!</Typography>
@@ -17,7 +33,9 @@ function Home(){
                         <Box marginRight={1}>
                             <ModalPostagem />
                         </Box>
-                        <Button variant="outlined" className="botao">Ver Postagens</Button>
+                        <Link to="/posts" className="text-decorator-none">
+                            <Button variant="outlined" className='botao'>Ver Postagens</Button>
+                        </Link>
                     </Box>
                 </Grid>
                 <Grid item xs={6} >
@@ -27,8 +45,8 @@ function Home(){
                     <TabPostagem />
                 </Grid>
             </Grid>
-        </> 
-    ); 
+        </>
+    );
 }
- 
+
 export default Home; 

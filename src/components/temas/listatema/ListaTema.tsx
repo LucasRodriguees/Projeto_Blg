@@ -4,14 +4,17 @@ import { Box, Card, CardActions, CardContent, Button, Typography } from '@materi
 import Tema from '../../../models/Tema';
 
 import './ListaTema.css';
-import useLocalStorage from 'react-use-localstorage';
 import { busca } from '../../../services/Service';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/tokensReducer';
 
 
 function ListaTema() {
     const [temas, setTemas] = useState<Tema[]>([])
-    const [token, setToken] = useLocalStorage("token");
     let history = useHistory();
+    const token = useSelector<TokenState, TokenState["tokens"]>( // constante que vai acessar nosso store e pegar o token e atribuir a essa constante
+        (state) => state.tokens
+      );
 
     useEffect(() => {
         if (token === "") {
